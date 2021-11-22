@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -85,7 +86,13 @@ public class PostService {
         }
     }
 
-    public Post updatePost(Post post) {
-        return postRepository.save(post);
+    public Post updatePost(Long id, Post post) {
+        Optional<Post> postOld = postRepository.findById(id);
+        if(postOld.isPresent()){
+        return postRepository.save(post);}
+        else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Id %d no encontrado", id));
+        }
     }
+
 }

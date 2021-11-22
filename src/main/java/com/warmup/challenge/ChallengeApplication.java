@@ -38,7 +38,7 @@ public class ChallengeApplication implements ApplicationRunner {
 		for (int i=0; i<20; i++) {
 			Post post = new Post();
 			post.setTitulo(faker.book().title());
-			post.setContenido(faker.howIMetYourMother().catchPhrase());
+			post.setContenido(faker.hobbit().location());
 			post.setFechaCreacion(faker.date().birthday());
 			post.setImagen(faker.internet().image());
 			post.setCategoria(faker.color().name());

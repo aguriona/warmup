@@ -1,5 +1,8 @@
 package com.warmup.challenge.entity;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
@@ -8,6 +11,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "posts")
+@SQLDelete(sql = "UPDATE posts SET deleted=true WHERE id=?")
+@Where(clause = "deleted=false")
 public class Post implements Serializable {
 
     @Id
@@ -37,6 +42,8 @@ public class Post implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     private Usuario idUsuario;
+
+    private Boolean deleted=false;
 
     public Post() {
     }
@@ -104,6 +111,14 @@ public class Post implements Serializable {
 
     public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override

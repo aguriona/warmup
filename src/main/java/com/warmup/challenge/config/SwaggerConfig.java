@@ -18,7 +18,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(getApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.warmup.challenge.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("com.warmup.challenge.controller"))
                 .paths(PathSelectors.any()).build();
     }
     private ApiInfo getApiInfo(){

@@ -20,12 +20,14 @@ public class Post implements Serializable {
     private String titulo;
 
     @Column(name="contenido")
+    @NotEmpty(message = "Debe tener contenido")
     private String contenido;
 
     @Column(name="imagen")
     private String imagen;
 
     @Column(name="categoria")
+    @NotEmpty(message = "Debe estar en una categoria")
     private String categoria;
 
     @Temporal(TemporalType.DATE)
